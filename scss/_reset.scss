@@ -1,0 +1,54 @@
+/***********************************
+INICIO DE RESET APENAS PARA O FUNCIONAMENTO DO MENU, AO COLOCAR EM PRODUÇÃO SUBSTITUA PELO SEU RESET DE PREFERÊNCIA.
+***********************************/
+*, *:after, *:before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+img{
+    max-width: 100%;
+    vertical-align: middle;
+    margin: 0;
+}
+
+a img {
+    border: none;
+    margin: 0;
+}
+
+ul{
+    list-style: none;
+}
+
+.container{
+    display: block;
+    width: 100%;
+}
+
+.content{
+    display: block;
+    margin: 0 auto;
+}
+
+.clear{
+    clear: both;
+}
+.box{
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+}
+
+.box:before{
+    clear: both;
+}
+
+.box1{width: 100%; margin: 15px 0 15px 0;}
+
+/***********************************
+FIM DE RESET APENAS PARA O FUNCIONAMENTO DO MENU, AO COLOCAR EM PRODUÇÃO SUBSTITUA PELO SEU RESET DE PREFERÊNCIA.
+***********************************/

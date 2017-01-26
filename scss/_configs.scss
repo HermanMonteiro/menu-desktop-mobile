@@ -1,0 +1,40 @@
+/***********************************
+CONFIGURAÇÃO DINÂMICA PARA O CSS DO PROJETO
+***********************************/
+
+
+/***********************************
+Z-INDEX FUNCTION
+Tecnicamente este aqui é uma função, mas eu senti que valia colocá-lo na lista, já que é muito fácil perder o controle sobre os valores de `z-index` quando se trabalha com vários arquivos diferentes. Então nós criamos este mixin para que pudéssemos colocar esses valores em um só lugar para facilitar a manutenção. Apenas coloque esse snippet no seu arquivo variaveis.scss ou configs.scss (precisa ser importando antes de qualquer outro arquivo que faz referência ao z-index, claro).
+Aí sempre que você for usar um valor de z-index, nomeie-o igual a sua classe e adicione no arquivo de variáveis/configs, como no código abaixo. Você nunca mais vai ter que esquentar a cabeça com um `z-ndex: 9999999`.
+
+.site-header {
+    z-index: z('site-header');
+}
+***********************************/
+@function z($name) {
+    @if index($z-indexes, $name) {
+        @return (length($z-indexes) - index($z-indexes, $name)) + 1;
+    } @else {
+        @warn 'There is no item "#{$name}" in this list; choose one of: #{$z-indexes}';
+        @return null;
+    }
+}
+$z-indexes: (
+    "outdated-browser",
+    "modal",
+    "site-header",
+    "page-wrapper",
+    "site-footer"
+);
+
+/***********************************
+VARIÁVEIS DO PROJETO
+***********************************/
+$CorPrimaria: blue;
+$CorSecundaria: green;
+$CorTerciaria: #eee;
+$CorQuaternaria: white;
+
+$Link: black;
+$LinkHover: #9db958;

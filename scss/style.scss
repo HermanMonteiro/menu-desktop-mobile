@@ -1,0 +1,228 @@
+@import "configs";
+@import "reset";
+@import "mixins";
+
+/***********************************
+Style Personalizado para iniciar um projeto.
+    Created on : 24/01/2017, 20:34:43
+    Author     : HermanMonteiro - https://www.hmtec.com.br
+***********************************/
+
+/***********************************
+########## GERAL PARA SITE / MENU ###########
+***********************************/
+.content {
+    width: 80%;
+}
+
+.fontzero {
+    font-size: 0;
+}
+.overlay{
+        background: rgba(0, 0, 0, 0.45) url(../img/pattern.png) repeat;
+    position: absolute;
+    width: 100%;
+    top: 80px;
+    height: 580px;
+}
+
+/***********************************
+########## MENU ###########
+***********************************/
+
+
+.mobile_menu_text {
+    display: none;
+    @include mq('tablet-wide', max) {
+        display: block;
+        cursor: pointer;
+        float: right;
+        color: $CorQuaternaria;
+        background-color: $CorPrimaria;
+        padding: 10px;
+        margin-top: 15px;
+        @include border-radius (3px);
+        .mobile_menu {
+            display: block;
+            color: $CorQuaternaria;
+            width: 36px;
+            height: 25px;
+            border-top: 4px solid;
+            margin: 0 0 0 10px;
+            float: right;
+            position: relative;
+            cursor: pointer;
+            -webkit-backface-visibility: hidden;
+            &::after,
+            &::before {
+                content: '';
+                display: block;
+                height: 4px;
+                margin-top: 6px;
+                background: currentColor;
+                position: relative;
+                transition: transform .2s ease;
+            }
+            &.menu_active {
+                border-top-color: transparent;
+                &::before {
+                    margin-top: 0px;
+                    top: 6px;
+                    transform: rotate(135deg);
+                }
+                &::after {
+                    margin-top: 0px;
+                    top: 2px;
+                    transform: rotate(45deg);
+                }
+            }
+        }
+    }
+}
+
+.main_header_logo {
+    float: left;
+}
+
+.main_nav {
+    float: right;
+    padding: 12px 0;
+    margin-top: 15px;
+    li a:hover {
+        background: $CorTerciaria;
+        color: $LinkHover;
+    }
+    @include mq('tablet-wide', max) {
+        position: fixed;
+        z-index: 99;
+        width: 250px;
+        max-width: 65%;
+        height: 100%;
+        overflow: auto;
+        left: -270px;
+        top: 0;
+        bottom: 0;
+        text-align: center;
+        background: $CorQuaternaria;
+        box-shadow: 1px 20px 20px #000;
+        //        background-image: url(../img/imagem500x452.png);
+        background-position: left 40% bottom -40%;
+        background-repeat: no-repeat;
+        background-size: 180%;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.main_nav_mobile_logo {
+    display: none;
+    @include mq('tablet-wide', max) {
+        display: block;
+    }
+}
+
+.main_header_nav li a {
+    padding: 8px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: $Link;
+    font-size: .91em;
+    font-weight: 300;
+    width: 100%;
+}
+
+.main_header_nav_item {
+    position: relative;
+    display: inline-block;
+    margin: 0 20px;
+    a {
+        padding: 10px 20px;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: $Link;
+        font-size: .91em;
+        font-weight: 300;
+        width: 100%;
+        &:hover,
+        &>a:hover {
+            color: $LinkHover;
+        }
+        @include mq('tablet-wide', max) {
+            color: #fff;
+            text-shadow: none;
+            display: block;
+            border-radius: 0;
+            padding: 10px;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            text-transform: none;
+            font-weight: normal;
+        }
+    }
+    &:hover .main_header_nav_sub,
+    &>a:hover .main_header_nav_sub {
+        display: block;
+        border: 1px solid $CorPrimaria;
+        @include mq('tablet-wide', max) {
+            border: none;
+        }
+    }
+    @include mq('tablet-wide', max) {
+        display: block;
+        width: 100%;
+        margin: 0;
+    }
+}
+
+.main_header_nav_sub {
+    display: none;
+    position: absolute;
+    width: 300px;
+    background: $CorQuaternaria;
+    padding: 5px;
+    text-align: left;
+    z-index: 99;
+    @include mq('tablet-wide', max) {
+        position: static;
+        overflow-y: auto;
+        width: 100%;
+        background: transparent;
+        display: block;
+    }
+}
+
+.main_header_nav_sub_item {
+    float: left;
+    width: 50%;
+    text-align: center;
+    a {
+        float: left;
+    }
+    @include mq('tablet-wide', max) {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.main_nav ul,
+.main_nav ul li,
+.main_nav ul li a {
+    vertical-align: middle;
+}
+/***********************************
+########## INDEX ###########
+***********************************/
+
+
+//INICIO BLOCO EXEMPLO: Ao migrar para o CMS excluir as classes que estiverem dentro deste bloco.
+.slide {
+    height: 500px;
+    background-color: #eee;
+    h1{
+    text-align: center;
+    margin: 0 auto;
+    font-size: 3em;
+    vertical-align: middle;
+    }
+}
+//FIM BLOCO EXEMPLO: Ao migrar para o CMS excluir as classes que estiverem dentro deste bloco.

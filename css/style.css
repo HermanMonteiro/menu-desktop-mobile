@@ -1,0 +1,402 @@
+@charset "UTF-8";
+/***********************************
+CONFIGURAÇÃO DINÂMICA PARA O CSS DO PROJETO
+***********************************/
+/***********************************
+Z-INDEX FUNCTION
+Tecnicamente este aqui é uma função, mas eu senti que valia colocá-lo na lista, já que é muito fácil perder o controle sobre os valores de `z-index` quando se trabalha com vários arquivos diferentes. Então nós criamos este mixin para que pudéssemos colocar esses valores em um só lugar para facilitar a manutenção. Apenas coloque esse snippet no seu arquivo variaveis.scss ou configs.scss (precisa ser importando antes de qualquer outro arquivo que faz referência ao z-index, claro).
+Aí sempre que você for usar um valor de z-index, nomeie-o igual a sua classe e adicione no arquivo de variáveis/configs, como no código abaixo. Você nunca mais vai ter que esquentar a cabeça com um `z-ndex: 9999999`.
+
+.site-header {
+    z-index: z('site-header');
+}
+***********************************/
+/***********************************
+VARIÁVEIS DO PROJETO
+***********************************/
+/***********************************
+INICIO DE RESET APENAS PARA O FUNCIONAMENTO DO MENU, AO COLOCAR EM PRODUÇÃO SUBSTITUA PELO SEU RESET DE PREFERÊNCIA.
+***********************************/
+*, *:after, *:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+  margin: 0;
+}
+
+a img {
+  border: none;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  display: block;
+  width: 100%;
+}
+
+.content {
+  display: block;
+  margin: 0 auto;
+}
+
+.clear {
+  clear: both;
+}
+
+.box {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+}
+
+.box:before {
+  clear: both;
+}
+
+.box1 {
+  width: 100%;
+  margin: 15px 0 15px 0;
+}
+
+/***********************************
+FIM DE RESET APENAS PARA O FUNCIONAMENTO DO MENU, AO COLOCAR EM PRODUÇÃO SUBSTITUA PELO SEU RESET DE PREFERÊNCIA.
+***********************************/
+/***********************************
+MIXINS UTEIS PARA SE UTILIZAR EM SEU PROJETO
+***********************************/
+/***********************************
+BORDER RADIUS
+Para se utilizar nas classes que precisar.
+***********************************/
+/***********************************
+CENTRALIZAR
+Para centralizar rapidamente um elemento de bloco sem ter que se preocupar se há uma `margin-top` ou `margin-bottom` já aplicada:
+***********************************/
+/***********************************
+PSEUDO-ELEMENTOS
+Quando você usa o ::before e o ::after você sempre precisa desses três, então economize duas linhas de código todas vez que usar este mixin. Veja abaixo um exemplo usando nenhum argumento (você também vai ver este mixin em outros abaixo também).
+div::after {
+    @include pseudo;
+    top: -1rem; left: -1rem;
+    width: 1rem; height: 1rem;
+}
+***********************************/
+/***********************************
+PROPORÇÃO RESPONSIVA
+Nós usamos este aqui para criar elementos escaláveis (normalmente imagens / backgrounds) que precisem manter a proporção.
+Então para usar este mixin você poderia escrever o código abaixo e sua `div` teria uma proporção comumente utilizada por vídeos (16:9), como do Youtube:
+
+div {
+    @include responsive-ratio(16,9);
+}
+***********************************/
+/***********************************
+TRIÂNGULO EM CSS
+Este mixin resolve toda a trabalheira de criar triângulo em CSS, tudo isso sem imagens. Basta você especificar a cor, o tamanho e a direção que vai sair do elemento, e pronto!
+
+***********************************/
+/***********************************
+ESTILOS DE FONTE
+Elimine a dor de definir estilos para uma fonte (este mixin assume que você já incluiu a fonte). Defina a fonte de fallback uma vez e nunca mais se preocupe com isso de novo.
+
+***********************************/
+/***********************************
+PLACEHOLDERS
+Eles são uma chatice quando você tem que definir o estilo em todos os formatos diferentes, esse mixin o arruma pra você:
+Se por acaso você não tiver acostumado a usar o @content, um exemplo de uso:
+
+input,  
+textarea {  
+    @include input-placeholder {
+        color: $grey;
+    }
+}
+
+***********************************/
+/***********************************
+
+MEDIA QUERIES
+Essa é pra economizar tempo! Você pode usar valores em pixel mas nós temos breakpoints padrões definidos que também funcionam, economizando tempo enquanto você vai deixando seus próprios breakpoints mais consistentes.
+O exemplo abaixo mostra o `padding` e o `font-size` aumentando quando a largura da tela fica maior que 1024px.
+
+.site-header {
+    padding: 2rem;
+    font-size: 1.8rem;
+    @include mq('tablet-wide') {
+        padding-top: 4rem;
+        font-size: 2.4rem;
+    }
+}
+***********************************/
+/***********************************
+
+HARDWARE
+Simples e eficaz para quando você precisa ligar a aceleração de hardware para alguma animação, deixando tudo rápido, elegante e sem lag.
+***********************************/
+/***********************************
+TRUNCAR
+Truncar um elemento não é tão simples como deveria ser, mas pode ser com este mixin. O que significa que quando você incluí-lo terá apenas que especificar um limite com um valor de `max-width`, e ser feliz!
+***********************************/
+/***********************************
+Style Personalizado para iniciar um projeto.
+    Created on : 24/01/2017, 20:34:43
+    Author     : HermanMonteiro - https://www.hmtec.com.br
+***********************************/
+/***********************************
+########## GERAL PARA SITE / MENU ###########
+***********************************/
+.content {
+  width: 80%;
+}
+
+.fontzero {
+  font-size: 0;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.45) url(../img/pattern.png) repeat;
+  position: absolute;
+  width: 100%;
+  top: 80px;
+  height: 580px;
+}
+
+/***********************************
+########## MENU ###########
+***********************************/
+.mobile_menu_text {
+  display: none;
+}
+
+@media only screen and (max-width: 1023px) {
+  .mobile_menu_text {
+    display: block;
+    cursor: pointer;
+    float: right;
+    color: white;
+    background-color: blue;
+    padding: 10px;
+    margin-top: 15px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+  }
+  .mobile_menu_text .mobile_menu {
+    display: block;
+    color: white;
+    width: 36px;
+    height: 25px;
+    border-top: 4px solid;
+    margin: 0 0 0 10px;
+    float: right;
+    position: relative;
+    cursor: pointer;
+    -webkit-backface-visibility: hidden;
+  }
+  .mobile_menu_text .mobile_menu::after, .mobile_menu_text .mobile_menu::before {
+    content: '';
+    display: block;
+    height: 4px;
+    margin-top: 6px;
+    background: currentColor;
+    position: relative;
+    transition: transform .2s ease;
+  }
+  .mobile_menu_text .mobile_menu.menu_active {
+    border-top-color: transparent;
+  }
+  .mobile_menu_text .mobile_menu.menu_active::before {
+    margin-top: 0px;
+    top: 6px;
+    transform: rotate(135deg);
+  }
+  .mobile_menu_text .mobile_menu.menu_active::after {
+    margin-top: 0px;
+    top: 2px;
+    transform: rotate(45deg);
+  }
+}
+
+.main_header_logo {
+  float: left;
+}
+
+.main_nav {
+  float: right;
+  padding: 12px 0;
+  margin-top: 15px;
+}
+
+.main_nav li a:hover {
+  background: #eee;
+  color: #9db958;
+}
+
+@media only screen and (max-width: 1023px) {
+  .main_nav {
+    position: fixed;
+    z-index: 99;
+    width: 250px;
+    max-width: 65%;
+    height: 100%;
+    overflow: auto;
+    left: -270px;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+    background: white;
+    box-shadow: 1px 20px 20px #000;
+    background-position: left 40% bottom -40%;
+    background-repeat: no-repeat;
+    background-size: 180%;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.main_nav_mobile_logo {
+  display: none;
+}
+
+@media only screen and (max-width: 1023px) {
+  .main_nav_mobile_logo {
+    display: block;
+  }
+}
+
+.main_header_nav li a {
+  padding: 8px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: black;
+  font-size: .91em;
+  font-weight: 300;
+  width: 100%;
+}
+
+.main_header_nav_item {
+  position: relative;
+  display: inline-block;
+  margin: 0 20px;
+}
+
+.main_header_nav_item a {
+  padding: 10px 20px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: black;
+  font-size: .91em;
+  font-weight: 300;
+  width: 100%;
+}
+
+.main_header_nav_item a:hover,
+.main_header_nav_item a > a:hover {
+  color: #9db958;
+}
+
+@media only screen and (max-width: 1023px) {
+  .main_header_nav_item a {
+    color: #fff;
+    text-shadow: none;
+    display: block;
+    border-radius: 0;
+    padding: 10px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    text-transform: none;
+    font-weight: normal;
+  }
+}
+
+.main_header_nav_item:hover .main_header_nav_sub,
+.main_header_nav_item > a:hover .main_header_nav_sub {
+  display: block;
+  border: 1px solid blue;
+}
+
+@media only screen and (max-width: 1023px) {
+  .main_header_nav_item:hover .main_header_nav_sub,
+  .main_header_nav_item > a:hover .main_header_nav_sub {
+    border: none;
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  .main_header_nav_item {
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.main_header_nav_sub {
+  display: none;
+  position: absolute;
+  width: 300px;
+  background: white;
+  padding: 5px;
+  text-align: left;
+  z-index: 99;
+}
+
+@media only screen and (max-width: 1023px) {
+  .main_header_nav_sub {
+    position: static;
+    overflow-y: auto;
+    width: 100%;
+    background: transparent;
+    display: block;
+  }
+}
+
+.main_header_nav_sub_item {
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+
+.main_header_nav_sub_item a {
+  float: left;
+}
+
+@media only screen and (max-width: 1023px) {
+  .main_header_nav_sub_item {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.main_nav ul,
+.main_nav ul li,
+.main_nav ul li a {
+  vertical-align: middle;
+}
+
+/***********************************
+########## INDEX ###########
+***********************************/
+.slide {
+  height: 500px;
+  background-color: #eee;
+}
+
+.slide h1 {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 3em;
+  vertical-align: middle;
+}
